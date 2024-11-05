@@ -22,7 +22,7 @@ class Idea extends Model
 
     /**
      * Define la relación que indica que cada idea pertenece a un solo usuario.
-     * Esto significa que cada idea está asociada a un único creador (usuario).
+     * Esto significa que cada idea está asociada a un único creador (usuario)..
      *
      * @return BelongsTo
      */

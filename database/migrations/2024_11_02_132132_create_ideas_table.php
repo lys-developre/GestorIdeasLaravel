@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ideas', function (Blueprint $table) {
             // campos que coloca por defecto laravel para un id incremental y un stamp de fecha
             $table->id();
-            // clave foranea que hace referencia a el usuario que creo la idea
+            // clave foranea que hace referencia a el usuario que creo la idea.
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('titulo');
             $table->string('description');

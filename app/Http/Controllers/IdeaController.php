@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class IdeaController extends Controller
 {
-    // con el metodo index extraemos la ideas de la base de datos y las dejamsos disponible en la vista
+    // con el metodo index extraemos la ideas de la base de datos y las dejamsos disponible en la vista.
     public function index(): View
     {
         $ideas = idea::get();

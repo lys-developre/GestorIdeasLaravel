@@ -11,7 +11,7 @@
             </div>
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
 
-                <!-- con este forelse iteraremos sobre cada idea dentro de todas las ideas  -->
+                <!-- con este forelse iteraremos sobre cada idea dentro de todas las ideas.  -->
                 @forelse($ideas as $idea)
 
                 <!-- si la variable ideas trae ideas las mostramos aqui -->
