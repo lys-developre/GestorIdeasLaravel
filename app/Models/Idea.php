@@ -11,6 +11,14 @@ class Idea extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'titulo',
+        'description',
+        'user_id',
+    ];
+
+    protected $casts =['created_at'=>'datetime'];
+
 
     /**
      * Define la relación que indica que cada idea pertenece a un solo usuario.

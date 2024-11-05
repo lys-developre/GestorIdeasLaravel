@@ -3,8 +3,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg mb-4">
                 <div class="p-6 text-gray-900 dark:text-gray-100s space-x-8">
-                    <a href="#" class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">{{ __('Agregar') }}</a>
-                    <a href="#" class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">{{ __('Las Mejores') }}</a>
+
+                    <a href=" {{ route('idea.create') }} " class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">Agregar</a>
+
+                    <a href="#" class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">Las Mejores</a>
                 </div>
             </div>
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
@@ -31,13 +33,13 @@
                             <!-- datos de la idea -->
                             <div>
                                 <!-- nombre de quien creeo la idea -->
-                                <span class="text-gray-800 dark:text-gray-100">{{$idea->()user->name}}</span>
-                                <!-- fecha en la que se creo -->
-                                <small class="ml-2 text-sm text-gray-600 dark:text-gray-100">{{$idea->created_at}}</small>
+                                <span class="text-gray-800 dark:text-gray-100">{{$idea->user->name}}</span>
 
-                                <!-- si la ide fue editada mostramos este contenido -->
-                                
-                                @unless($chirp->created_at->eq($chirp->updated_at))
+                                <!-- fecha en la que se creo -->
+                                <small class="ml-2 text-sm text-gray-600 dark:text-gray-100">{{$idea->created_at->format('d/m/Y')}}</small>
+
+                                <!-- si la ide fue editada tendra una fecha de edicion diferente y entonces  mostramos este contenido -->
+                                @unless($idea->created_at->eq($idea->updated_at))
                                 <small class="text-sm text-gray-400"> &middot; {{ __('edited') }}</small>
                                 @endunless
                             </div>
@@ -75,7 +77,7 @@
                         </div>
 
                         <!-- titulo de la idea -->
-                        <p class="mt-3 text-lg text-gray-900 dark:text-gray-100">This is an example super message</p>
+                        <p class="mt-3 text-lg text-gray-900 dark:text-gray-100">{{$idea->titulo}}</p>
 
                         <small class="text-sm text-gray-400 flex mt-3">
                             <!-- logo -->
@@ -103,7 +105,7 @@
 
                 <!-- si la variable ideas esta vacio mostraremos lo siguiente en la vista -->
                 @empty
-                <h2>La lista de ideas esta vacia</h2>
+                <h2 class="text-xl text-white p-4">La lista de ideas esta vacia</h2>
 
                 <!-- finalizamos la iteracion de el array ideas -->
                 @endforelse

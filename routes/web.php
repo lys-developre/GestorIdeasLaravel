@@ -35,5 +35,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-// ruta para el controlador que rediredireccionara a la vista de ideas
+// ruta para el controlador que rediredireccionara a la vista de ideas.
 Route::get('/ideas', [IdeaController::class, 'index'])->name('idea.index');
+
+// ruta para la vista de creacion de ideas donde obtenemos la info de el formulario.
+Route::get('/ideas/crear', [IdeaController::class, 'create'])->name('idea.create');
+
+// ruta con el metodo post para validar e insertar los datos en la db.
+Route::post('/ideas/crear', [IdeaController::class, 'store'])->name('idea.store');
