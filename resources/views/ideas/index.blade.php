@@ -57,19 +57,26 @@
                                 </x-slot>
                                 <!-- contenido de el componente menu  -->
                                 <x-slot name="content">
+
+                                    <!-- ruta para ver la idea -->
                                     <x-dropdown-link :href="$myroute='zzz'">
-                                        {{ __('Ver') }}
+                                        Ver
                                     </x-dropdown-link>
-                                    <x-dropdown-link :href="$myroute='zzz'">
-                                        {{ __('Edit') }}
+
+                                    <!-- ruta para editar la idea -->
+                                    <x-dropdown-link :href="route('idea.edit', $idea)">
+                                        Editar
                                     </x-dropdown-link>
+                                    
+                                    <!-- ruta para eliminar la idea -->
                                     <form method="POST" action="">
                                         @csrf
                                         @method('delete')
                                         <x-dropdown-link :href="$myroute='zzz'" onclick="event.preventDefault(); this.closest('form').submit();">
-                                            {{ __('Delete') }}
+                                            Eliminar
                                         </x-dropdown-link>
                                     </form>
+
                                 </x-slot>
                             </x-dropdown>
                             @endauth

@@ -41,5 +41,8 @@ Route::get('/ideas', [IdeaController::class, 'index'])->name('idea.index');
 // ruta para la vista de creacion de ideas donde obtenemos la info de el formulario.
 Route::get('/ideas/crear', [IdeaController::class, 'create'])->name('idea.create');
 
-// ruta con el metodo post para validar e insertar los datos en la db..
+// ruta con el metodo post para validar e insertar los datos en la db.
 Route::post('/ideas/crear', [IdeaController::class, 'store'])->name('idea.store');
+
+//ruta que nos redireciona a la vista de el formulario de edicion de la idea ademas le enviamos en la uri como parametro el id de la idea.
+Route::get('/ideas/editar/{idea}', [IdeaController::class, 'edit'])->name('idea.edit');
