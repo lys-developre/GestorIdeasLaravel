@@ -31,7 +31,7 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <span class="pl-3">Me gusta</span>
+                                <span style="padding-left: 12px;">Me gusta</span>
                                 
                             </x-primary-button>
                             <a href="{{route('idea.index')}}" class="dark:text-gray-100">Regresar</a>

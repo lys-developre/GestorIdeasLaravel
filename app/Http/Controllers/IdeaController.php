@@ -43,7 +43,7 @@ class IdeaController extends Controller
     public function store(Request $request)
     {
         // Validamos la informacion que proviene de los campos de el formulario y retornamos los mensaje de error personalizados.
-        $validated = $request->validate($this->rules , $this->errorMessages);
+        $validated = $request->validate($this->rules, $this->errorMessages);
 
         //almacenamos en la base de datos los datos validados.
         Idea::create([
@@ -95,13 +95,13 @@ class IdeaController extends Controller
     }
 
     //este controlador retorna la vista show de ideas
-    public function show (Idea $idea): View
+    public function show(Idea $idea): View
     {
         return view('ideas.show')->with('idea', $idea);
     }
 
     //este controlador retorna index una ves eliminada la idea
-    public function delete (Idea $idea): RedirectResponse
+    public function delete(Idea $idea): RedirectResponse
     {
         //eliminamos la idea
         $idea->delete();
@@ -111,5 +111,16 @@ class IdeaController extends Controller
         return redirect()->route('idea.index');
     }
 
-    
+    //metodo para la gestion de los likes tomando la consulta que envia el formulario de el like.
+    public function synchronizeLikes(Request $request, Idea $idea): RedirectResponse
+    {
+        //obtenemos el usuario, definimos la relacion , y añadimos o eliminamos el mg de el usuario.
+        $request->user()->ideasLike()->toggle($idea->id);
+
+        // actualizamos la tabla que contiene el numero de likes de la idea
+        $idea->update(['likes' => $idea->users()->count()]);
+
+        //retornamos la vista en la que se produjo el like
+        return redirect()->route('idea.show',['idea' => $idea->id]);
+    }
 }

@@ -15,6 +15,7 @@ class Idea extends Model
         'titulo',
         'description',
         'user_id',
+        'likes'
     ];
 
     protected $casts =['created_at'=>'datetime'];

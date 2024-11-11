@@ -53,6 +53,9 @@ Route::put('/ideas/actualizar/{idea}', [IdeaController::class, 'update'])->name(
 //ruta para la vista show ideas
 Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 
-//rita para eliminar la idea
+//ruta para eliminar la idea
 Route::delete('/ideas/{idea}', [IdeaController::class, 'delete'])->name('idea.delete');
+
+//ruta hacia el controlador que se encargara de gestionar los likes.
+Route::put('/ideas/{idea}', [IdeaController::class, 'synchronizeLikes'])->name('idea.synchronizeLikes');
 
