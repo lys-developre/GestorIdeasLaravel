@@ -46,3 +46,13 @@ Route::post('/ideas/crear', [IdeaController::class, 'store'])->name('idea.store'
 
 //ruta que nos redireciona a la vista de el formulario de edicion de la idea ademas le enviamos en la uri como parametro el id de la idea.
 Route::get('/ideas/editar/{idea}', [IdeaController::class, 'edit'])->name('idea.edit');
+
+//creamos la ruta para guardar en la base de datos las ideas editadas.
+Route::put('/ideas/actualizar/{idea}', [IdeaController::class, 'update'])->name('idea.update');
+
+//ruta para la vista show ideas
+Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
+
+//rita para eliminar la idea
+Route::delete('/ideas/{idea}', [IdeaController::class, 'delete'])->name('idea.delete');
+

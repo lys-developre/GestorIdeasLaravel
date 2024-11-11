@@ -1,7 +1,17 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            
+            <!-- si la session trae mensaje lo mostramos -->
+            @if(session()->has('message'))
+            <div class="text-center bg-gray-100 rounded-md p-2 font-semibold">
+                <span class="text-indigo-600 text-xl">{{session('message')}}</span>
+            </div>
+            @endif
+
             <div class="overflow-hidden shadow-sm sm:rounded-lg mb-4">
+
+                <!-- en este div agripamos los botones agregar y las mejores -->
                 <div class="p-6 text-gray-900 dark:text-gray-100s space-x-8">
 
                     <a href=" {{ route('idea.create') }} " class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">Agregar</a>
@@ -40,7 +50,7 @@
 
                                 <!-- si la ide fue editada tendra una fecha de edicion diferente y entonces  mostramos este contenido -->
                                 @unless($idea->created_at->eq($idea->updated_at))
-                                <small class="text-sm text-gray-400"> &middot; {{ __('edited') }}</small>
+                                <small class="text-sm text-gray-400"> &middot; {{ __('Editado') }}</small>
                                 @endunless
                             </div>
 
@@ -59,7 +69,7 @@
                                 <x-slot name="content">
 
                                     <!-- ruta para ver la idea -->
-                                    <x-dropdown-link :href="$myroute='zzz'">
+                                    <x-dropdown-link :href="route('idea.show' , $idea)">
                                         Ver
                                     </x-dropdown-link>
 
@@ -67,12 +77,12 @@
                                     <x-dropdown-link :href="route('idea.edit', $idea)">
                                         Editar
                                     </x-dropdown-link>
-                                    
+
                                     <!-- ruta para eliminar la idea -->
-                                    <form method="POST" action="">
+                                    <form method="POST" action="{{ route('idea.delete', $idea) }}">
                                         @csrf
-                                        @method('delete')
-                                        <x-dropdown-link :href="$myroute='zzz'" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        @method('DELETE')
+                                        <x-dropdown-link href="#" onclick="event.preventDefault(); this.closest('form').submit();">
                                             Eliminar
                                         </x-dropdown-link>
                                     </form>
@@ -105,7 +115,7 @@
                                 </g>
                             </svg>
                             <!-- numeno de likes que tiene esta idea -->
-                            <span class="ml-2">{{$idea->likes}}</span>
+                            <span class="ml-2 pl-3">{{$idea->likes}}</span>
                         </small>
                     </div>
                 </div>

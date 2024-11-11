@@ -4,8 +4,8 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <!-- si la variable ideas esta vacia o no existe redirigimos hacia una ruta sino hacia otra -->
-                    <form method="POST" action="{{empty($idea) ? route('idea.store') : ''}}">
+                    <!-- si la variable ideas esta vacia o no existe redirigimos hacia una ruta sino hacia la ruta para hacer update de la idea editada -->
+                    <form method="POST" action="{{empty($idea) ? route('idea.store') : route('idea.update', $idea)}}">
 
                         <!-- esta directiva se utiliza para no permitir peticiones desde otro dominio -->
                         @csrf
