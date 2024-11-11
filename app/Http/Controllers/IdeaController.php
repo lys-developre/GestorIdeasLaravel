@@ -64,13 +64,17 @@ class IdeaController extends Controller
     //en este metodo recibimos la idea que enviamos por el enrutador y devolvemos la vista con el formulario
     public function edit(Idea $idea): View
     {
+        //si en la clase de politicas retornamos true se ejecuta el metodo sino, muestra un error.
+        $this->authorize('update', $idea);
         //retornamos la vista junto con la variable ideas
         return view('ideas.create_or_edit')->with('idea', $idea);
     }
 
     //obtenemos los parametros de la idea editada y la guardamos en la base de datos.
     public function update(Request $request, Idea $idea)
-    {
+    {   
+        //si en la clase de politicas retornamos true se ejecuta el metodo sino muestra un error.
+        $this->authorize('update', $idea);
 
         // Validamos las ideas ya editadas que nos llegan en la request
         $validated = $request->validate([
@@ -102,7 +106,10 @@ class IdeaController extends Controller
 
     //este controlador retorna index una ves eliminada la idea
     public function delete(Idea $idea): RedirectResponse
-    {
+    {   
+        // control de autorizacion
+        $this->authorize('delete', $idea);
+        
         //eliminamos la idea
         $idea->delete();
         //mostramos el mnsaje de que la idea fue eliminada correctamente

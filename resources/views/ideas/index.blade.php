@@ -37,7 +37,7 @@
                         </g>
                     </svg>
 
-                    <div class="flex-1 pl-3">
+                    <div class="flex-1" style="padding-left: 10px; ">
                         <div class="flex justify-between items-center">
 
                             <!-- datos de la idea -->
@@ -73,11 +73,16 @@
                                         Ver
                                     </x-dropdown-link>
 
+                                    <!-- si el usuario puede -->
+                                    @can('update', $idea)
+
                                     <!-- ruta para editar la idea -->
                                     <x-dropdown-link :href="route('idea.edit', $idea)">
                                         Editar
                                     </x-dropdown-link>
+                                    @endcan
 
+                                    @can('update', $idea)
                                     <!-- ruta para eliminar la idea -->
                                     <form method="POST" action="{{ route('idea.delete', $idea) }}">
                                         @csrf
@@ -86,6 +91,7 @@
                                             Eliminar
                                         </x-dropdown-link>
                                     </form>
+                                    @endcan
 
                                 </x-slot>
                             </x-dropdown>

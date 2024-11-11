@@ -10,7 +10,11 @@
                     <form method="POST" action="{{route('idea.like', $idea)}}">
                         @csrf
                         @method('put')
+
+
                         <div class="mt-4 space-x-8">
+                            @cannot('update', $idea)
+
                             @if(!auth()->user()->iLikeIt($idea->id))
                             <x-primary-button>
 
@@ -59,8 +63,13 @@
                             </x-secondary-button>
                             @endif
 
+                            @endcannot
+                            
                             <a href="{{route('idea.index')}}" class="dark:text-gray-100">Regresar</a>
+
+                            
                         </div>
+
                     </form>
                 </div>
             </div>
