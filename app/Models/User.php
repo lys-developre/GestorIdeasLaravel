@@ -51,7 +51,7 @@ class User extends Authenticatable
      * Cada idea que crea estará vinculada a este usuario.
      *
      * @return HasMany
-     */    
+     */
     public function ideas(): HasMany
     {
         return $this->hasMany(Idea::class);
@@ -69,5 +69,11 @@ class User extends Authenticatable
     public function ideasLike(): BelongsToMany
     {
         return $this->belongsToMany(Idea::class);
+    }
+
+    // Este método devuelve un booleano indicando si el usuario ha dado "me gusta" a la idea con el id proporcionado.
+    public function iLikeIt($ideaId)
+    {
+        return $this->ideasLike()->where('idea_id', $ideaId)->exists();
     }
 }

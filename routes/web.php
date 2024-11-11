@@ -57,5 +57,5 @@ Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 Route::delete('/ideas/{idea}', [IdeaController::class, 'delete'])->name('idea.delete');
 
 //ruta hacia el controlador que se encargara de gestionar los likes.
-Route::put('/ideas/{idea}', [IdeaController::class, 'synchronizeLikes'])->name('idea.synchronizeLikes');
+Route::put('/ideas/{idea}', [IdeaController::class, 'synchronizeLikes'])->name('idea.like');
 
