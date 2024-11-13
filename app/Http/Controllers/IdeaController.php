@@ -27,9 +27,10 @@ class IdeaController extends Controller
     ];
 
     // con el metodo index extraemos la ideas de la base de datos y las dejamsos disponible en la vista.
-    public function index(): View
-    {
-        $ideas = idea::get();
+    public function index(Request $request): View
+    {   
+        // agregamos scopes para fultrar mis ideas y ordenar por likes
+        $ideas = idea::myIdeas($request->filtro)->theBest($request->filtro)->get();
         return view('ideas.index', ['ideas' => $ideas]);
     }
 
@@ -120,7 +121,9 @@ class IdeaController extends Controller
 
     //metodo para la gestion de los likes tomando la consulta que envia el formulario de el like.
     public function synchronizeLikes(Request $request, Idea $idea): RedirectResponse
-    {
+    {   
+        $this->authorize('updateLikes',$idea);
+
         //obtenemos el usuario, definimos la relacion , y añadimos o eliminamos el mg de el usuario.
         $request->user()->ideasLike()->toggle($idea->id);
 

@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <!-- si la session trae mensaje lo mostramos -->
             @if(session()->has('message'))
             <div class="text-center bg-gray-100 rounded-md p-2 font-semibold">
@@ -14,9 +14,27 @@
                 <!-- en este div agripamos los botones agregar y las mejores -->
                 <div class="p-6 text-gray-900 dark:text-gray-100s space-x-8">
 
-                    <a href=" {{ route('idea.create') }} " class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">Agregar</a>
+                    <!-- enviamos la solicitud a el enrrutador que nos redirige hacia el controlador para crear ideas -->
+                    <a
+                        href=" {{ route('idea.create') }} "
+                        class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">
+                        Agregar
+                    </a>
 
-                    <a href="#" class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">Las Mejores</a>
+                    <!-- enviamos la solicitud a el enrrutador junto con el parametro de consulta y el filtro especifico mis ideas -->
+                    <a
+                        href="{{ route('idea.index', ['filtro' => 'mis-ideas']) }}"
+                        class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">
+                        Mis Ideas
+                    </a>
+
+                    <!-- Lo mismo que la anterior pero con el filtro especifico las mejores-->
+                    <a
+                        href="{{ route('idea.index', ['filtro' => 'las-mejores']) }}"
+                        class="px-4 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">
+                        Las Mejores
+                    </a>
+
                 </div>
             </div>
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">

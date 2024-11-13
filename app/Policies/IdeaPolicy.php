@@ -63,11 +63,11 @@ class IdeaPolicy
     }
 
     /**
-     * Descripción: Solo el creador o un administrador pueden eliminar una idea de forma permanente.
-     * Función: Permite la eliminación permanente de la idea solo si el usuario es el creador o un administrador.
+     * Descripción: Solo el creador o un administrador pueden darle like a las ideas si no son de su propiedad.
+     * 
      */
-    public function forceDelete(User $user, Idea $idea): bool
+    public function updateLikes(User $user, Idea $idea): bool
     {
-        return $user->id === $idea->user_id || $user->is_admin; // Permite la eliminación permanente si es el creador o un administrador.
+        return $idea->user()->isNot($user);
     }
 }
