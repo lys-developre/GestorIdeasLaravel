@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('idea.index');
+    }
     return view('welcome');
 });
-
 
 // ruta a la pagina de inicio
 Route::get('/dashboard', function () {

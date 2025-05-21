@@ -17,7 +17,7 @@ return new class extends Migration
             // clave foranea que hace referencia a el usuario que creo la idea.
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('titulo');
-            $table->string('description');
+            $table->text('description'); // Cambiado de string a text
             $table->unsignedInteger('likes')->default(0);
             $table->timestamps();
             
